@@ -134,8 +134,7 @@ elif page == "Certifications":
 
 elif page == "School":
     st.title("School life")
-    st.write("I Learnt alot in computing python networking ect,but the best part is going to competitions i have went for three competitions for computing One was a hackaton for nanyang poly, there was one for TP and vjjv hackaton i went for both as well as ycep for nanyang poly i have gotten all the certs for all three of them they are incrediably fun since i laern new things and improve my coding skills
-    .")
+    st.write("I Learnt alot in computing python networking ect,but the best part is going to competitions i have went for three competitions for computing One was a hackaton for nanyang poly, there was one for TP and vjjv hackaton i went for both as well as ycep for nanyang poly i have gotten all the certs for all three of them they are incrediably fun since i laern new things and improve my coding skills.")
     st.subheader("Cca")
     st.write("I have also learnt alot from my robotics cca and made alot of friends and met alot of diffrent people in the competitions i have went for i have went for at least two comepetitions for robotics and i have learnt alot from it, i was also given a great opportunity to talk to DR janil he came to our school and i was able to represent my ccawith my friends and impressed him with our robot.")
     st.subheader("Awards")
