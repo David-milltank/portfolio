@@ -122,28 +122,13 @@ if page == "Home":
    
 elif page == "About Me":
     st.title("About Me")
-    about_images = st.file_uploader(
-        "Upload profile photos or About Me images",
-        type=["png", "jpg", "jpeg"],
-        accept_multiple_files=True,
-        key="about_upload",
-    )
-    if st.button("Save About Images"):
-        if about_images:
-            saved_paths = []
-            for image in about_images:
-                saved_paths.append(save_uploaded_file(image, ABOUT_DIR))
-            st.success(f"Saved {len(saved_paths)} image(s).")
-            st.session_state.about_upload = None
-        else:
-            st.warning("Please choose images to save first.")
     
     display_gallery(ABOUT_DIR, "Saved About / Profile Images", cols=3, thumb_width=200, caption_prefix="Saved image")
     st.write(" Hi,I'm dave.")
-    st.write("I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, and I was able to join many competitions. I enjoy playing sports in my free time, mainly basketball and bowling. I am passionate about improving my coding skills and interacting with others to create new things like robots or new code to help others.")
+    st.write("I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, and I was able to join many competitions. I enjoy playing sports in my f[...]
     
     st.header("My Passion")
-    st.write("My passion for coding started when my mother signed me up for a coding class when I was still a kid. It was a class for building LEGO robots and coding them to do different tasks. I got hooked immediately but was unable to continue since my family moved to a new house and I was unable to attend it. When I joined Serangoon Garden Secondary School, I was able to join the robotics club and I was able to continue my coding journey and I learnt so much from it. I was able to join many competitions and though I didn't win them, I gained valuable experiences and was able to get the role of robotics vice president. When I heard that my school was offering O-Level Computing, I took it immediately. Though I was not good at it at first, I was able to learn and with help from my teachers and friends I was able to grow even more.")
+    st.write("My passion for coding started when my mother signed me up for a coding class when I was still a kid. It was a class for building LEGO robots and coding them to do different tasks. I got [...]
     
 
 elif page == "Certifications":
@@ -188,27 +173,10 @@ elif page == "Certifications":
 
 elif page == "School":
     st.title("School life")
-    st.write("I Learnt alot in computing ,and the best part about it is going to competitions going to competitions allowed me to learn many new skills and meet alot of new people it boosted my competive spirt as well. I enjoyed my time in SGSS as i have made many friends and made countless memories from all the events that my school has held like camp,workshops and inter class games which allowed me to build stronger bonds with my classmates.")
+    st.write("I Learnt alot in computing ,and the best part about it is going to competitions going to competitions allowed me to learn many new skills and meet alot of new people it boosted my compet[...]
     st.subheader("Cca")
-    st.write("I have also learnt a lot from my robotics CCA and made a lot of friends and met a lot of different people in the competitions I have went for. I have went for at least two competitions for robotics and I have learnt a lot from it. I was also given a great opportunity to talk to Dr. Janil. He came to our school and I was able to represent my CCA with my friends and impressed him with our robot.")
+    st.write("I have also learnt a lot from my robotics CCA and made a lot of friends and met a lot of different people in the competitions I have went for. I have went for at least two competitions f[...]
     st.subheader("Awards")
     st.write("i have also went for competitions to represent my school and placed for cross country.")
-
-    # School images uploader (separate folder from About and Certs)
-    school_images = st.file_uploader(
-        "Upload School images (events, projects, awards)",
-        type=["png", "jpg", "jpeg"],
-        accept_multiple_files=True,
-        key="school_upload",
-    )
-    if st.button("Save School Images"):
-        if school_images:
-            saved_paths = []
-            for image in school_images:
-                saved_paths.append(save_uploaded_file(image, SCHOOL_DIR))
-            st.success(f"Saved {len(saved_paths)} school image(s).")
-            st.session_state.school_upload = None
-        else:
-            st.warning("Please choose images to save first.")
 
     display_gallery(SCHOOL_DIR, "Saved School Images", cols=3, thumb_width=200, caption_prefix="Saved school image")
