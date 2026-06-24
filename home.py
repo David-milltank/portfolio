@@ -61,7 +61,8 @@ if page == "Home":
     st.write("---")
     st.subheader("Quick Navigation")
     col1, col2, col3 = st.columns(3)
-    
+    st.write("Letter of recemandation")
+    st.write(file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf)
     with col1:
         if st.button(" About Me", use_container_width=True):
             st.session_state.page = "About Me"
