@@ -134,21 +134,7 @@ elif page == "Certifications":
    
 
     # PDFs uploader (resume, letters, etc.)
-    t.write("Upload PDF certificates or documents (resume, LOR)")
-    pdf_file = st.file_uploader(
-        "Upload a PDF",
-        type=["pdf"],
-        accept_multiple_files=False,
-        key="pdf_upload",
-    )
-    if st.button("Save PDF"):
-        if pdf_file:
-            saved_path = save_uploaded_file(pdf_file, PDFS_DIR)
-            st.success("Saved PDF.")
-            st.session_state.pdf_upload = None
-        else:
-            st.warning("Please choose a PDF to save first.")
-
+   
     # Also show any saved certificates/images    
 
 
