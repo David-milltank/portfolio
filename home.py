@@ -8,8 +8,10 @@ st.set_page_config(page_title="Portfolio", layout="wide")
 IMAGES_ROOT = "images"
 ABOUT_DIR = os.path.join(IMAGES_ROOT, "about")
 CERTS_DIR = os.path.join(IMAGES_ROOT, "certs")
+PDFS_DIR = os.path.join(IMAGES_ROOT, "pdfs")
 os.makedirs(ABOUT_DIR, exist_ok=True)
 os.makedirs(CERTS_DIR, exist_ok=True)
+os.makedirs(PDFS_DIR, exist_ok=True)
 SCHOOL_DIR = os.path.join(IMAGES_ROOT, "school")
 os.makedirs(SCHOOL_DIR, exist_ok=True)
 
@@ -34,6 +36,16 @@ def list_saved_images(folder):
     return files
 
 
+def list_saved_pdfs(folder):
+    files = []
+    if os.path.exists(folder):
+        for name in os.listdir(folder):
+            if name.lower().endswith('.pdf'):
+                files.append(os.path.join(folder, name))
+    files.sort()
+    return files
+
+
 def display_gallery(folder, title, cols=3, thumb_width=300, caption_prefix="Saved image"):
     saved = list_saved_images(folder)
     if saved:
@@ -42,6 +54,21 @@ def display_gallery(folder, title, cols=3, thumb_width=300, caption_prefix="Save
         cols_elems = st.columns(n)
         for idx, path in enumerate(saved):
             cols_elems[idx % n].image(path, caption=f"{caption_prefix} {idx+1}", width=thumb_width)
+
+
+def display_pdfs(folder, title):
+    saved = list_saved_pdfs(folder)
+    if saved:
+        st.subheader(title)
+        for path in saved:
+            fname = os.path.basename(path)
+            st.write(fname)
+            with open(path, "rb") as f:
+                data = f.read()
+            st.download_button("Download PDF", data, file_name=fname, mime="application/pdf")
+            # link to raw file in this repo (useful if the app is public and files are committed to the repo)
+            raw_url = f"https://raw.githubusercontent.com/David-milltank/portfolio/main/{path}"
+            st.markdown(f"[Open in new tab]({raw_url})")
 
 
 # Initialize session state for page navigation
@@ -61,8 +88,11 @@ if page == "Home":
     st.write("---")
     st.subheader("Quick Navigation")
     col1, col2, col3 = st.columns(3)
-    st.write("Letter of recemandation")
-    st.write("file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf")
+
+    # Show saved PDFs (e.g. Letter of Recommendation, Resume)
+    st.write("Letter(s) / Documents")
+    display_pdfs(PDFS_DIR, "Saved Documents (PDFs)")
+
     with col1:
         if st.button(" About Me", use_container_width=True):
             st.session_state.page = "About Me"
@@ -102,12 +132,12 @@ elif page == "About Me":
     display_gallery(ABOUT_DIR, "Saved About / Profile Images", cols=3, thumb_width=200, caption_prefix="Saved image")
     st.write(" Hi,I'm dave.")
     st.write(
-        "I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, i was able to join many competitions. I enjoy playing sports in my free time mainly basketball and bowling. I am passionate on imoroving my coding skills and intereting with others to create new things like robots or new code to help others."
+        "I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, i was able to join many competitions. I enjoy playing sports in my free [...]"
     )
     
     st.header("My Passion")
     st.write(
-        "My passion for coding started when my mother signed me up for a coding class when i was still a kid it was a class for building lego robots and coding them to do diffrent tasks i got hooked imeadiatly but was unable to continue since my family moved to  a new hosue and i was unable to attend it.When i joined serengoon garden secoundary school i was able to join the robotics club and i was able to continue my coding journey and i learnt so much from it i was able to join many competitions and though i didnt win them i gained valuable experiences and was able to get the role of roboticsvice president.When i heard that my school was offering o-levle computing i took it immeaditely though i was not good at it at first i was able to learn and with help from my teachers and friends i was able to grow even more."
+        "My passion for coding started when my mother signed me up for a coding class when i was still a kid it was a class for building lego robots and coding them to do diffrent tasks i got hoo[...]"
     )
     
 
@@ -129,15 +159,33 @@ elif page == "Certifications":
             st.session_state.cert_upload = None
         else:
             st.warning("Please choose certificates to save first.")
+
+    # PDFs uploader (resume, letters, etc.)
+    st.write("Upload PDF certificates or documents (resume, LOR)")
+    pdf_file = st.file_uploader(
+        "Upload a PDF",
+        type=["pdf"],
+        accept_multiple_files=False,
+        key="pdf_upload",
+    )
+    if st.button("Save PDF"):
+        if pdf_file:
+            saved_path = save_uploaded_file(pdf_file, PDFS_DIR)
+            st.success("Saved PDF.")
+            st.session_state.pdf_upload = None
+        else:
+            st.warning("Please choose a PDF to save first.")
+
     # Also show any saved certificates/images
     display_gallery(CERTS_DIR, "Saved Certificates", cols=4, thumb_width=200, caption_prefix="Saved certificate")
+    display_pdfs(PDFS_DIR, "Saved Documents (PDFs)")
     st.write("If you prefer, add picture files in your repository and replace the uploader with `st.image('path/to/your-certificate.png')`.")
 
 elif page == "School":
     st.title("School life")
-    st.write("I Learnt alot in computing python networking ect,but the best part is going to competitions i have went for three competitions for computing One was a hackaton for nanyang poly, there was one for TP and vjjv hackaton i went for both as well as ycep for nanyang poly i have gotten all the certs for all three of them they are incrediably fun since i laern new things and improve my coding skills.")
+    st.write("I Learnt alot in computing python networking ect,but the best part is going to competitions i have went for three competitions for computing One was a hackaton for nanyang poly, there[...]")
     st.subheader("Cca")
-    st.write("I have also learnt alot from my robotics cca and made alot of friends and met alot of diffrent people in the competitions i have went for i have went for at least two comepetitions for robotics and i have learnt alot from it, i was also given a great opportunity to talk to DR janil he came to our school and i was able to represent my ccawith my friends and impressed him with our robot.")
+    st.write("I have also learnt alot from my robotics cca and made alot of friends and met alot of diffrent people in the competitions i have went for i have went for at least two comepetitions [...]")
     st.subheader("Awards")
     st.write("i have also went for competitions to represent my school and placed for cross country.")
 
@@ -159,7 +207,3 @@ elif page == "School":
             st.warning("Please choose images to save first.")
 
     display_gallery(SCHOOL_DIR, "Saved School Images", cols=3, thumb_width=200, caption_prefix="Saved school image")
-
-
-
-
