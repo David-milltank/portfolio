@@ -131,42 +131,7 @@ elif page == "About Me":
     st.write("My passion for coding started when my mother signed me up for a coding class when I was still a kid. It was a class for building LEGO robots and coding them to do different tasks. I got hooked immediately but was unable to continue since my family moved to a new house and I was unable to attend it. When I joined Serangoon Garden Secondary School, I was able to join the robotics club and I was able to continue my coding journey and I learnt so much from it. I was able to join many competitions and though I didn't win them, I gained valuable experiences and was able to get the role of robotics vice president. When I heard that my school was offering O-Level Computing, I took it immediately. Though I was not good at it at first, I was able to learn and with help from my teachers and friends I was able to grow even more.")
     
 
-elif page == "Certifications":
-    st.title("Certifications")
-    st.write("Upload your certificate images here so visitors can see your achievements.")
-    cert_images = st.file_uploader(
-        "Upload certification images",
-        type=["png", "jpg", "jpeg"],
-        accept_multiple_files=True,
-        key="cert_upload",
-    )
-    if st.button("Save Certification Images"):
-        if cert_images:
-            saved_paths = []
-            for image in cert_images:
-                saved_paths.append(save_uploaded_file(image, CERTS_DIR))
-            st.success(f"Saved {len(saved_paths)} certificate image(s).")
-            st.session_state.cert_upload = None
-        else:
-            st.warning("Please choose certificates to save first.")
 
-    # PDFs uploader (resume, letters, etc.)
-    st.write("Upload PDF certificates or documents (resume, LOR)")
-    pdf_file = st.file_uploader(
-        "Upload a PDF",
-        type=["pdf"],
-        accept_multiple_files=False,
-        key="pdf_upload",
-    )
-    if st.button("Save PDF"):
-        if pdf_file:
-            saved_path = save_uploaded_file(pdf_file, PDFS_DIR)
-            st.success("Saved PDF.")
-            st.session_state.pdf_upload = None
-        else:
-            st.warning("Please choose a PDF to save first.")
-
-    # Also show any saved certificates/images
     display_gallery(CERTS_DIR, "Saved Certificates", cols=4, thumb_width=200, caption_prefix="Saved certificate")
     display_pdfs(PDFS_DIR, "Saved Documents (PDFs)")
     st.write("If you prefer, add picture files in your repository and replace the uploader with `st.image('path/to/your-certificate.png')`.")
