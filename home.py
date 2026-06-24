@@ -91,7 +91,7 @@ if page == "Home":
 
     # Show saved PDFs (e.g. Letter of Recommendation, Resume)
     st.write("Letter of recommendation")
-    display_pdfs(PDFS_DIR, "Saved Documents (PDFs)")
+   st.write("file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf") 
     st.write("Please copy paste link :) ")
     
 
