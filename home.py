@@ -90,8 +90,10 @@ if page == "Home":
     col1, col2, col3 = st.columns(3)
 
     # Show saved PDFs (e.g. Letter of Recommendation, Resume)
-    st.write("Letter(s) / Documents")
+    st.write("Letter of recommendation")
     display_pdfs(PDFS_DIR, "Saved Documents (PDFs)")
+    st.write("Please copy paste link :) ")
+    
 
     with col1:
         if st.button(" About Me", use_container_width=True):
