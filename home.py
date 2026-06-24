@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import uuid
-import base64
 
 st.set_page_config(page_title="Portfolio", layout="wide")
 
@@ -83,9 +82,6 @@ page = st.sidebar.selectbox(
 )
 st.session_state.page = page
 
-# Path to your local LOR PDF. Change if your file is in a different location.
-LOCAL_LOR_PATH = r"C:\Users\davey\OneDrive\Desktop\balls\LOR 2026 Dave.pdf"
-
 if page == "Home":
     st.title("Welcome to daves Portfolio (credits to Low Li Wen for helping me with the code)")
     
@@ -112,20 +108,12 @@ if page == "Home":
             st.session_state.page = "School"
             st.rerun()
 
-    # If the local LOR exists on the machine running Streamlit, allow opening/downloading it from the app.
-    if os.path.exists(LOCAL_LOR_PATH):
-        with open(LOCAL_LOR_PATH, "rb") as f:
-            lor_bytes = f.read()
-        st.download_button("Download LOR (local)", lor_bytes, file_name=os.path.basename(LOCAL_LOR_PATH), mime="application/pdf")
-
-        if st.button("Open LOR (in app)"):
-            # embed PDF as a base64 iframe so it can be viewed in the browser served by Streamlit
-            b64 = base64.b64encode(lor_bytes).decode("utf-8")
-            pdf_display = f'<iframe src="data:application/pdf;base64,{b64}" width="100%" height="800" type="application/pdf"></iframe>'
-            st.components.v1.html(pdf_display, height=800, scrolling=True)
-    else:
-        st.info("Local LOR not found at: {}. Upload it on the Certifications page or commit it to the repo to make it available in the app.".format(LOCAL_LOR_PATH))
-
+    # Local link to a Letter of Recommendation PDF on the user's machine
+    st.markdown(
+        '<a href="file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf" target="_blank" rel="noopener noreferrer">Open Letter of Recommendation (LOR 2026)</a>',
+        unsafe_allow_html=True,
+    )
+    
     st.write("---")
     
    
