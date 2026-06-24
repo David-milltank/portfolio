@@ -82,6 +82,10 @@ page = st.sidebar.selectbox(
 )
 st.session_state.page = page
 
+# Public raw URL where the LOR can be hosted for everyone to access.
+# Easiest workflow: upload the PDF to images/pdfs in this repo and use the raw.githubusercontent link below.
+LOR_RAW_URL = "https://raw.githubusercontent.com/David-milltank/portfolio/main/images/pdfs/LOR%202026%20Dave.pdf"
+
 if page == "Home":
     st.title("Welcome to daves Portfolio (credits to Low Li Wen for helping me with the code)")
     
@@ -91,9 +95,9 @@ if page == "Home":
 
     # Show saved PDFs (e.g. Letter of Recommendation, Resume)
     st.write("Letter of recommendation")
-    st.write("file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf") 
-    st.write("Please copy paste link :) ")
-    
+    # Public https link so visitors on other machines can open the file. Replace LOR_RAW_URL if you upload a different filename.
+    st.write(LOR_RAW_URL)
+    st.write("Please click the link below to open the LOR in a new tab.")
 
     with col1:
         if st.button(" About Me", use_container_width=True):
@@ -110,9 +114,9 @@ if page == "Home":
             st.session_state.page = "School"
             st.rerun()
 
-    # Local link to a Letter of Recommendation PDF on the user's machine
+    # Public link to a Letter of Recommendation PDF hosted in the repo (or any public https URL).
     st.markdown(
-        '<a href="file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf" target="_blank" rel="noopener noreferrer">Open Letter of Recommendation (LOR 2026)</a>',
+        f'<a href="{LOR_RAW_URL}" target="_blank" rel="noopener noreferrer">Open Letter of Recommendation (LOR 2026)</a>',
         unsafe_allow_html=True,
     )
     
