@@ -140,7 +140,7 @@ elif page == "Certifications":
 
     display_gallery(CERTS_DIR, "Saved Certificates", cols=4, thumb_width=200, caption_prefix="Saved certificate")
     display_pdfs(PDFS_DIR, "Saved Documents (PDFs)")
-    st.write("If you prefer, add picture files in your repository and replace the uploader with `st.image('path/to/your-certificate.png')`.")
+   
 
 elif page == "School":
     st.title("School life")
