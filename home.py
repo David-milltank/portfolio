@@ -91,9 +91,10 @@ if page == "Home":
 
     # Show saved PDFs (e.g. Letter of Recommendation, Resume)
     st.write("Letter of recommendation")
-    st.write("file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf") 
-    st.write("Please copy paste link :) ")
-    
+    # Public raw GitHub link for the LOR (so visitors on other machines can open it)
+    LOR_RAW = "https://raw.githubusercontent.com/David-milltank/portfolio/main/LOR%202026%20Dave.pdf"
+    st.write(LOR_RAW)
+    st.write("Please click the link below to open the LOR in a new tab.")
 
     with col1:
         if st.button(" About Me", use_container_width=True):
@@ -110,9 +111,9 @@ if page == "Home":
             st.session_state.page = "School"
             st.rerun()
 
-    # Local link to a Letter of Recommendation PDF on the user's machine
+    # Public link to the Letter of Recommendation PDF hosted in the repo (or any public https URL).
     st.markdown(
-        '<a href="file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf" target="_blank" rel="noopener noreferrer">Open Letter of Recommendation (LOR 2026)</a>',
+        f'<a href="{LOR_RAW}" target="_blank" rel="noopener noreferrer">Open Letter of Recommendation (LOR 2026)</a>',
         unsafe_allow_html=True,
     )
     
