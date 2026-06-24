@@ -107,6 +107,12 @@ if page == "Home":
         if st.button(" School Experience", use_container_width=True):
             st.session_state.page = "School"
             st.rerun()
+
+    # Local link to a Letter of Recommendation PDF on the user's machine
+    st.markdown(
+        '<a href="file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf" target="_blank" rel="noopener noreferrer">Open Letter of Recommendation (LOR 2026)</a>',
+        unsafe_allow_html=True,
+    )
     
     st.write("---")
     
@@ -132,13 +138,11 @@ elif page == "About Me":
     display_gallery(ABOUT_DIR, "Saved About / Profile Images", cols=3, thumb_width=200, caption_prefix="Saved image")
     st.write(" Hi,I'm dave.")
     st.write(
-        "I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, i was able to join many competitions. I enjoy playing sports in my free [...]"
-    )
+        "I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, i was able to join many competitions. I enjoy playing sports in my free [...]")
     
     st.header("My Passion")
     st.write(
-        "My passion for coding started when my mother signed me up for a coding class when i was still a kid it was a class for building lego robots and coding them to do diffrent tasks i got hoo[...]"
-    )
+        "My passion for coding started when my mother signed me up for a coding class when i was still a kid it was a class for building lego robots and coding them to do diffrent tasks i got hoo[...]")
     
 
 elif page == "Certifications":
