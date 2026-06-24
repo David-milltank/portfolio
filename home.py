@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import uuid
-import urllib.parse
 
 st.set_page_config(page_title="Portfolio", layout="wide")
 
@@ -68,7 +67,7 @@ def display_pdfs(folder, title):
                 data = f.read()
             st.download_button("Download PDF", data, file_name=fname, mime="application/pdf")
             # link to raw file in this repo (useful if the app is public and files are committed to the repo)
-            raw_url = f"https://raw.githubusercontent.com/David-milltank/portfolio/main/{urllib.parse.quote(path)}"
+            raw_url = f"https://raw.githubusercontent.com/David-milltank/portfolio/main/{path}"
             st.markdown(f"[Open in new tab]({raw_url})")
 
 
@@ -90,41 +89,12 @@ if page == "Home":
     st.subheader("Quick Navigation")
     col1, col2, col3 = st.columns(3)
 
-    # LOR: let the app owner paste a public URL that visitors can click
-    st.subheader("Letter of Recommendation")
-    st.write("If you have a public URL for your LOR (hosted on GitHub, Google Drive with a direct link, etc.), paste it below so visitors can open it in a new tab.")
-    lor_input = st.text_input("Public URL to your LOR (https://...)", value=st.session_state.get("lor_url", ""), key="lor_url_input")
-    if st.button("Save LOR link"):
-        if lor_input:
-            st.session_state.lor_url = lor_input
-            st.success("Saved LOR link.")
-        else:
-            st.warning("Please enter a valid URL first.")
+    # Show saved PDFs (e.g. Letter of Recommendation, Resume)
+    st.write("Letter of recommendation")
+    st.write("file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf") 
+    st.write("Please copy paste link :) ")
+    
 
-    # Show saved or stored LOR link (clickable)
-    if st.session_state.get("lor_url"):
-        url = st.session_state.lor_url
-        st.markdown(
-            f'<a href="{url}" target="_blank" rel="noopener noreferrer">Open Letter of Recommendation (LOR 2026)</a>',
-            unsafe_allow_html=True,
-        )
-
-    # Also show any saved PDFs from images/pdfs
-    saved_pdfs = list_saved_pdfs(PDFS_DIR)
-    if saved_pdfs:
-        st.write("Or use one of the PDFs uploaded to this app:")
-        for path in saved_pdfs:
-            fname = os.path.basename(path)
-            # Offer download button
-            with open(path, "rb") as f:
-                data = f.read()
-            st.download_button(f"Download {fname}", data, file_name=fname, mime="application/pdf")
-            # If the file is committed to the repo, provide a raw GitHub link (URL-encoded)
-            raw_url = f"https://raw.githubusercontent.com/David-milltank/portfolio/main/{urllib.parse.quote(path)}"
-            st.markdown(f'<a href="{raw_url}" target="_blank" rel="noopener noreferrer">Open {fname} in new tab</a>', unsafe_allow_html=True)
-
-    st.write("---")
-    st.subheader("Quick Navigation")
     with col1:
         if st.button(" About Me", use_container_width=True):
             st.session_state.page = "About Me"
@@ -140,6 +110,12 @@ if page == "Home":
             st.session_state.page = "School"
             st.rerun()
 
+    # Local link to a Letter of Recommendation PDF on the user's machine
+    st.markdown(
+        '<a href="file:///C:/Users/davey/OneDrive/Desktop/balls/LOR%202026%20Dave.pdf" target="_blank" rel="noopener noreferrer">Open Letter of Recommendation (LOR 2026)</a>',
+        unsafe_allow_html=True,
+    )
+    
     st.write("---")
     
    
