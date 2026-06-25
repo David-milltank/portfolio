@@ -133,6 +133,9 @@ elif page == "Certifications":
     st.title("Certifications")
    
 
+    display_gallery(CERTS_DIR, "Saved Certificates", cols=4, thumb_width=200, caption_prefix="Saved certificate")
+    display_pdfs(PDFS_DIR, "Saved Documents (PDFs)")
+   
     # PDFs uploader (resume, letters, etc.)
    
     # Also show any saved certificates/images    
