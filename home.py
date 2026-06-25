@@ -138,9 +138,6 @@ elif page == "Certifications":
     # Also show any saved certificates/images    
 
 
-    display_gallery(CERTS_DIR, "Saved Certificates", cols=4, thumb_width=200, caption_prefix="Saved certificate")
-    display_pdfs(PDFS_DIR, "Saved Documents (PDFs)")
-   
 
 elif page == "School":
     st.title("School life")
