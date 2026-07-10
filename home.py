@@ -97,7 +97,7 @@ page = st.sidebar.selectbox(
 st.session_state.page = page
 
 if page == "Home":
-    st.title("Welcome to daves Portfolio (credits to Low Li Wen for helping me with the code)")
+    st.title("Welcome to Dave's Portfolio (credits to Low Li Wen for helping me with the code)")
     
     st.write("---")
     st.subheader("Quick Navigation")
@@ -196,12 +196,11 @@ elif page == "About Me":
     else:
         st.write("No saved About images")
 
-    st.write(" Hi,I'm dave.")
-    st.write("I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, i was able to join many competitions. I enjoy playing sports in my free time mainly basketball and bowling. I am passionate on imoroving my coding skills and interecting with others to create new things like robots or new code to help others.")
+    st.write(" Hi, I'm Dave.")
+    st.write("I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, and I was able to join many competitions. I enjoy playing sports in my free time and outdoor activities.")
     
     st.header("My Passion")
-    st.write("My passion for coding started when my mother signed me up for a coding class when i was still a kid it was a class for building lego robots and coding them to do diffrent tasks i got hooked imeadiatly but was unable to continue since my family moved to  a new hosue and i was unable to attend it.When i joined serengoon garden secoundary school i was able to join the robotics club and i was able to continue my coding journey and i learnt so much from it i was able to join many competitions and though i didnt win them i gained valuable experiences and was able to get the role of roboticsvice president.When i heard that my school was offering o-levle computing i took it immeaditely though i was not good at it at first i was able to learn and with help from my teachers and friends i was able to grow even more."
-    )
+    st.write("My passion for coding started when my mother signed me up for a coding class when I was still a kid. It was a class for building LEGO robots and coding them to do different tasks. I got hooked on programming because it was so cool to see my code actually control the robots.")
 
     # Subheader uploader for My Passion
     st.subheader("Upload images for My Passion")
@@ -271,9 +270,9 @@ elif page == "Certifications":
 
 elif page == "School":
     st.title("School life")
-    st.write("I Learnt alot in computing ,and the best part about it is going to competitions going to competitions allowed me to learn many new skills and meet alot of new people it boosted my competive spirt as well. I enjoyed my time in SGSS as i have made many friends and made countless memories from all the events that my school has held like camp,workshops and inter class games which allowed me to build stronger bonds with my classmates. ")
-    st.subheader("Cca")
-    st.write("I have also learnt alot from my robotics cca and made alot of friends and met alot of diffrent people in the competitions i have went for i have went for at least two comepetitions for robotics and i have learnt alot from it, i was also given a great opportunity to talk to DR janil he came to our school and i was able to represent my cca with my friends and impressed him with our robot.")
+    st.write("I learned a lot in computing, and the best part about it is going to competitions. Going to competitions allowed me to learn many new skills and meet a lot of new people. It boosted my confidence and personal growth.")
+    st.subheader("CCA")
+    st.write("I have also learned a lot from my robotics CCA and made a lot of friends and met a lot of different people in the competitions I have participated in. I have participated in at least two competitions for robotics.")
 
     # Subheader uploader for CCA
     st.subheader("Upload images for CCA")
@@ -285,7 +284,7 @@ elif page == "School":
         st.rerun()
 
     st.subheader("Awards")
-    st.write("i have also went for competitions to represent my school and placed for cross country.")
+    st.write("I have also participated in competitions to represent my school and placed in the cross country competition.")
 
     # Subheader uploader for Awards
     st.subheader("Upload images for Awards")
