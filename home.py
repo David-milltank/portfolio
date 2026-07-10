@@ -46,6 +46,18 @@ def list_saved_pdfs(folder):
     return files
 
 
+def delete_files(paths):
+    deleted = []
+    for p in paths:
+        try:
+            if os.path.exists(p):
+                os.remove(p)
+                deleted.append(p)
+        except Exception as e:
+            st.error(f"Failed to delete {p}: {e}")
+    return deleted
+
+
 def display_gallery(folder, title, cols=3, thumb_width=300, caption_prefix="Saved image"):
     saved = list_saved_images(folder)
     if saved:
@@ -134,6 +146,21 @@ elif page == "About Me":
         st.image(saved_path, width=200)
         st.rerun()
 
+    # Manage/Delete About images
+    st.subheader("Manage About Images")
+    about_files = list_saved_images(ABOUT_DIR)
+    if about_files:
+        to_delete = st.multiselect("Select About images to delete", options=about_files, format_func=lambda x: os.path.basename(x), key='about_del_select')
+        if st.button("Delete selected About images", key='delete_about_btn'):
+            deleted = delete_files(to_delete)
+            if deleted:
+                st.success(f"Deleted {len(deleted)} file(s)")
+                st.rerun()
+            else:
+                st.info("No files were deleted.")
+    else:
+        st.write("No saved About images")
+
     st.write(" Hi,I'm dave.")
     st.write("I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, and I was able to join many competitions. I enjoy playing sports in my free time.")
     
@@ -165,6 +192,34 @@ elif page == "Certifications":
         st.write("The PDF is available in the Saved Documents section.")
         st.rerun()
    
+    # Manage/Delete certificate images and PDFs
+    st.subheader("Manage Certificates & Documents")
+    cert_files = list_saved_images(CERTS_DIR)
+    pdf_files = list_saved_pdfs(PDFS_DIR)
+    if cert_files:
+        to_delete_certs = st.multiselect("Select certificate images to delete", options=cert_files, format_func=lambda x: os.path.basename(x), key='cert_del_select')
+        if st.button("Delete selected certificate images", key='delete_cert_btn'):
+            deleted = delete_files(to_delete_certs)
+            if deleted:
+                st.success(f"Deleted {len(deleted)} certificate image(s)")
+                st.rerun()
+            else:
+                st.info("No certificate images were deleted.")
+    else:
+        st.write("No saved certificate images")
+
+    if pdf_files:
+        to_delete_pdfs = st.multiselect("Select PDFs to delete", options=pdf_files, format_func=lambda x: os.path.basename(x), key='pdf_del_select')
+        if st.button("Delete selected PDFs", key='delete_pdf_btn'):
+            deleted = delete_files(to_delete_pdfs)
+            if deleted:
+                st.success(f"Deleted {len(deleted)} PDF(s)")
+                st.rerun()
+            else:
+                st.info("No PDFs were deleted.")
+    else:
+        st.write("No saved PDFs")
+   
     # Also show any saved certificates/images    
 
 
@@ -185,5 +240,20 @@ elif page == "School":
         st.success(f"Saved school image to {saved_school}")
         st.image(saved_school, width=200)
         st.rerun()
+
+    # Manage/Delete school images
+    st.subheader("Manage School Images")
+    school_files = list_saved_images(SCHOOL_DIR)
+    if school_files:
+        to_delete_school = st.multiselect("Select school images to delete", options=school_files, format_func=lambda x: os.path.basename(x), key='school_del_select')
+        if st.button("Delete selected school images", key='delete_school_btn'):
+            deleted = delete_files(to_delete_school)
+            if deleted:
+                st.success(f"Deleted {len(deleted)} school image(s)")
+                st.rerun()
+            else:
+                st.info("No school images were deleted.")
+    else:
+        st.write("No saved school images")
 
     display_gallery(SCHOOL_DIR, "Saved School Images", cols=3, thumb_width=200, caption_prefix="Saved school image")
