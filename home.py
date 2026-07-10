@@ -124,11 +124,22 @@ elif page == "About Me":
     st.title("About Me")
     
     display_gallery(ABOUT_DIR, "Saved About / Profile Images", cols=3, thumb_width=200, caption_prefix="Saved image")
+
+    # Image uploader for About/Profile
+    st.subheader("Upload a profile/about image")
+    uploaded_about = st.file_uploader("Choose an image to upload for About/Profile", type=['png','jpg','jpeg','gif'], key='about_uploader')
+    if uploaded_about is not None:
+        saved_path = save_uploaded_file(uploaded_about, ABOUT_DIR)
+        st.success(f"Saved image to {saved_path}")
+        st.image(saved_path, width=200)
+        st.rerun()
+
     st.write(" Hi,I'm dave.")
-    st.write("I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, and I was able to join many competitions. I enjoy playing sports in my free time, mainly basketball and bowling. I am passionate about improving my coding skills and interacting with others to create new things like robots or new code to help others.")
+    st.write("I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, and I was able to join many competitions. I enjoy playing sports in my free time.")
     
     st.header("My Passion")
-    st.write("My passion for coding started when my mother signed me up for a coding class when I was still a kid. It was a class for building LEGO robots and coding them to do different tasks. I got hooked immediately but was unable to continue since my family moved to a new house and I was unable to attend it. When I joined Serangoon Garden Secondary School, I was able to join the robotics club and I was able to continue my coding journey and I learnt so much from it. I was able to join many competitions and though I didn't win them, I gained valuable experiences and was able to get the role of robotics vice president. When I heard that my school was offering O-Level Computing, I took it immediately. Though I was not good at it at first, I was able to learn and with help from my teachers and friends I was able to grow even more.")
+    st.write("My passion for coding started when my mother signed me up for a coding class when I was still a kid. It was a class for building LEGO robots and coding them to do different tasks. I got interested and kept learning.")
+
 elif page == "Certifications":
     st.title("Certifications")
    
@@ -136,7 +147,23 @@ elif page == "Certifications":
     display_gallery(CERTS_DIR, "Saved Certificates", cols=4, thumb_width=200, caption_prefix="Saved certificate")
     display_pdfs(PDFS_DIR, "Saved Documents (PDFs)")
    
-    # PDFs uploader (resume, letters, etc.)
+    # Certificate image uploader
+    st.subheader("Upload a certificate (image)")
+    uploaded_cert = st.file_uploader("Choose a certificate image to upload", type=['png','jpg','jpeg','gif'], key='cert_uploader')
+    if uploaded_cert is not None:
+        saved_cert = save_uploaded_file(uploaded_cert, CERTS_DIR)
+        st.success(f"Saved certificate image to {saved_cert}")
+        st.image(saved_cert, width=200)
+        st.rerun()
+
+    # PDF uploader (resume, letters, etc.)
+    st.subheader("Upload a PDF document (resume, LOR, etc.)")
+    uploaded_pdf = st.file_uploader("Choose a PDF to upload", type=['pdf'], key='pdf_uploader')
+    if uploaded_pdf is not None:
+        saved_pdf = save_uploaded_file(uploaded_pdf, PDFS_DIR)
+        st.success(f"Saved PDF to {saved_pdf}")
+        st.write("The PDF is available in the Saved Documents section.")
+        st.rerun()
    
     # Also show any saved certificates/images    
 
@@ -144,10 +171,19 @@ elif page == "Certifications":
 
 elif page == "School":
     st.title("School life")
-    st.write("I learnt a lot in Computing, and the best part about it is going to competitions. Going to competitions allowed me to learn many new skills and meet a lot of new people. It boosted my competitive spirit as well. I enjoyed my time in SGSS as I have made many friends and made countless memories from all the events that my school has held, like camp, workshops and inter-class games, which allowed me to build stronger bonds with my classmates.")
+    st.write("I learnt a lot in Computing, and the best part about it is going to competitions. Going to competitions allowed me to learn many new skills and meet a lot of new people. It boosted my confidence.")
     st.subheader("Cca")
-    st.write("I have also learnt a lot from my robotics CCA and made a lot of friends and met a lot of different people in the competitions I have went for. I have went for at least two competitions for robotics and I have learnt a lot from it. I was also given a great opportunity to talk to Dr. Janil. He came to our school and I was able to represent my CCA with my friends and impressed him with our robot.")
+    st.write("I have also learnt a lot from my robotics CCA and made a lot of friends and met a lot of different people in the competitions I have went for. I have went for at least two competitions for my school.")
     st.subheader("Awards")
     st.write("i have also went for competitions to represent my school and placed for cross country.")
+
+    # School images uploader
+    st.subheader("Upload school images")
+    uploaded_school = st.file_uploader("Choose a school image to upload", type=['png','jpg','jpeg','gif'], key='school_uploader')
+    if uploaded_school is not None:
+        saved_school = save_uploaded_file(uploaded_school, SCHOOL_DIR)
+        st.success(f"Saved school image to {saved_school}")
+        st.image(saved_school, width=200)
+        st.rerun()
 
     display_gallery(SCHOOL_DIR, "Saved School Images", cols=3, thumb_width=200, caption_prefix="Saved school image")
