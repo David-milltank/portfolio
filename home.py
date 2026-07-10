@@ -9,9 +9,11 @@ IMAGES_ROOT = "images"
 ABOUT_DIR = os.path.join(IMAGES_ROOT, "about")
 CERTS_DIR = os.path.join(IMAGES_ROOT, "certs")
 PDFS_DIR = os.path.join(IMAGES_ROOT, "pdfs")
+HOME_DIR = os.path.join(IMAGES_ROOT, "home")
 os.makedirs(ABOUT_DIR, exist_ok=True)
 os.makedirs(CERTS_DIR, exist_ok=True)
 os.makedirs(PDFS_DIR, exist_ok=True)
+os.makedirs(HOME_DIR, exist_ok=True)
 SCHOOL_DIR = os.path.join(IMAGES_ROOT, "school")
 os.makedirs(SCHOOL_DIR, exist_ok=True)
 
@@ -130,7 +132,40 @@ if page == "Home":
     )
     
     st.write("---")
-    
+
+    # Home uploads
+    st.subheader("Upload general image")
+    uploaded_home_img = st.file_uploader("Choose an image to upload for Home", type=['png','jpg','jpeg','gif'], key='home_img_uploader')
+    if uploaded_home_img is not None:
+        saved_home = save_uploaded_file(uploaded_home_img, HOME_DIR)
+        st.success(f"Saved home image to {saved_home}")
+        st.image(saved_home, width=200)
+        st.rerun()
+
+    st.subheader("Upload general PDF")
+    uploaded_home_pdf = st.file_uploader("Choose a PDF to upload for Home (resume/LOR)", type=['pdf'], key='home_pdf_uploader')
+    if uploaded_home_pdf is not None:
+        saved_home_pdf = save_uploaded_file(uploaded_home_pdf, PDFS_DIR)
+        st.success(f"Saved PDF to {saved_home_pdf}")
+        st.write("The PDF is available in the Saved Documents section.")
+        st.rerun()
+
+    # Manage/Delete Home images and show gallery
+    st.subheader("Manage Home Images")
+    home_files = list_saved_images(HOME_DIR)
+    if home_files:
+        to_delete_home = st.multiselect("Select home images to delete", options=home_files, format_func=lambda x: os.path.basename(x), key='home_del_select')
+        if st.button("Delete selected home images", key='delete_home_btn'):
+            deleted = delete_files(to_delete_home)
+            if deleted:
+                st.success(f"Deleted {len(deleted)} home image(s)")
+                st.rerun()
+            else:
+                st.info("No home images were deleted.")
+    else:
+        st.write("No saved home images")
+
+    display_gallery(HOME_DIR, "Saved Home Images", cols=3, thumb_width=200, caption_prefix="Home image")
    
 elif page == "About Me":
     st.title("About Me")
