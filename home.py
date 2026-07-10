@@ -202,6 +202,15 @@ elif page == "About Me":
     st.header("My Passion")
     st.write("My passion for coding started when my mother signed me up for a coding class when I was still a kid. It was a class for building LEGO robots and coding them to do different tasks. I got interested and kept learning.")
 
+    # Subheader uploader for My Passion
+    st.subheader("Upload images for My Passion")
+    uploaded_passion = st.file_uploader("Choose an image for My Passion", type=['png','jpg','jpeg','gif'], key='passion_uploader')
+    if uploaded_passion is not None:
+        saved_passion = save_uploaded_file(uploaded_passion, ABOUT_DIR)
+        st.success(f"Saved My Passion image to {saved_passion}")
+        st.image(saved_passion, width=200)
+        st.rerun()
+
 elif page == "Certifications":
     st.title("Certifications")
    
@@ -264,8 +273,27 @@ elif page == "School":
     st.write("I learnt a lot in Computing, and the best part about it is going to competitions. Going to competitions allowed me to learn many new skills and meet a lot of new people. It boosted my confidence.")
     st.subheader("Cca")
     st.write("I have also learnt a lot from my robotics CCA and made a lot of friends and met a lot of different people in the competitions I have went for. I have went for at least two competitions for my school.")
+
+    # Subheader uploader for CCA
+    st.subheader("Upload images for CCA")
+    uploaded_cca = st.file_uploader("Choose an image for CCA", type=['png','jpg','jpeg','gif'], key='cca_uploader')
+    if uploaded_cca is not None:
+        saved_cca = save_uploaded_file(uploaded_cca, SCHOOL_DIR)
+        st.success(f"Saved CCA image to {saved_cca}")
+        st.image(saved_cca, width=200)
+        st.rerun()
+
     st.subheader("Awards")
     st.write("i have also went for competitions to represent my school and placed for cross country.")
+
+    # Subheader uploader for Awards
+    st.subheader("Upload images for Awards")
+    uploaded_award = st.file_uploader("Choose an image for Awards", type=['png','jpg','jpeg','gif'], key='award_uploader')
+    if uploaded_award is not None:
+        saved_award = save_uploaded_file(uploaded_award, SCHOOL_DIR)
+        st.success(f"Saved Awards image to {saved_award}")
+        st.image(saved_award, width=200)
+        st.rerun()
 
     # School images uploader
     st.subheader("Upload school images")
