@@ -135,20 +135,23 @@ if page == "Home":
 
     # Home uploads
     st.subheader("Upload general image")
-    uploaded_home_img = st.file_uploader("Choose an image to upload for Home", type=['png','jpg','jpeg','gif'], key='home_img_uploader')
+    uploaded_home_img = st.file_uploader("Choose an image to upload for Home", type=['png','jpg','jpeg','gif'], key='home_img_uploader', accept_multiple_files=False)
     if uploaded_home_img is not None:
-        saved_home = save_uploaded_file(uploaded_home_img, HOME_DIR)
-        st.success(f"Saved home image to {saved_home}")
-        st.image(saved_home, width=200)
-        st.rerun()
+        st.image(uploaded_home_img, width=200)
+        if st.button("Save Home Image", key='save_home_img_btn'):
+            saved_home = save_uploaded_file(uploaded_home_img, HOME_DIR)
+            st.success(f"Saved home image to {saved_home}")
+            st.rerun()
 
     st.subheader("Upload general PDF")
-    uploaded_home_pdf = st.file_uploader("Choose a PDF to upload for Home (resume/LOR)", type=['pdf'], key='home_pdf_uploader')
+    uploaded_home_pdf = st.file_uploader("Choose a PDF to upload for Home (resume/LOR)", type=['pdf'], key='home_pdf_uploader', accept_multiple_files=False)
     if uploaded_home_pdf is not None:
-        saved_home_pdf = save_uploaded_file(uploaded_home_pdf, PDFS_DIR)
-        st.success(f"Saved PDF to {saved_home_pdf}")
-        st.write("The PDF is available in the Saved Documents section.")
-        st.rerun()
+        st.write(f"Selected: {uploaded_home_pdf.name}")
+        if st.button("Save PDF", key='save_home_pdf_btn'):
+            saved_home_pdf = save_uploaded_file(uploaded_home_pdf, PDFS_DIR)
+            st.success(f"Saved PDF to {saved_home_pdf}")
+            st.write("The PDF is available in the Saved Documents section.")
+            st.rerun()
 
     # Manage/Delete Home images and show gallery
     st.subheader("Manage Home Images")
@@ -174,12 +177,13 @@ elif page == "About Me":
 
     # Image uploader for About/Profile
     st.subheader("Upload a profile/about image")
-    uploaded_about = st.file_uploader("Choose an image to upload for About/Profile", type=['png','jpg','jpeg','gif'], key='about_uploader')
+    uploaded_about = st.file_uploader("Choose an image to upload for About/Profile", type=['png','jpg','jpeg','gif'], key='about_uploader', accept_multiple_files=False)
     if uploaded_about is not None:
-        saved_path = save_uploaded_file(uploaded_about, ABOUT_DIR)
-        st.success(f"Saved image to {saved_path}")
-        st.image(saved_path, width=200)
-        st.rerun()
+        st.image(uploaded_about, width=200)
+        if st.button("Save About Image", key='save_about_btn'):
+            saved_path = save_uploaded_file(uploaded_about, ABOUT_DIR)
+            st.success(f"Saved image to {saved_path}")
+            st.rerun()
 
     # Manage/Delete About images
     st.subheader("Manage About Images")
@@ -204,12 +208,13 @@ elif page == "About Me":
 
     # Subheader uploader for My Passion
     st.subheader("Upload images for My Passion")
-    uploaded_passion = st.file_uploader("Choose an image for My Passion", type=['png','jpg','jpeg','gif'], key='passion_uploader')
+    uploaded_passion = st.file_uploader("Choose an image for My Passion", type=['png','jpg','jpeg','gif'], key='passion_uploader', accept_multiple_files=False)
     if uploaded_passion is not None:
-        saved_passion = save_uploaded_file(uploaded_passion, ABOUT_DIR)
-        st.success(f"Saved My Passion image to {saved_passion}")
-        st.image(saved_passion, width=200)
-        st.rerun()
+        st.image(uploaded_passion, width=200)
+        if st.button("Save Passion Image", key='save_passion_btn'):
+            saved_passion = save_uploaded_file(uploaded_passion, ABOUT_DIR)
+            st.success(f"Saved My Passion image to {saved_passion}")
+            st.rerun()
 
 elif page == "Certifications":
     st.title("Certifications")
@@ -220,21 +225,24 @@ elif page == "Certifications":
    
     # Certificate image uploader
     st.subheader("Upload a certificate (image)")
-    uploaded_cert = st.file_uploader("Choose a certificate image to upload", type=['png','jpg','jpeg','gif'], key='cert_uploader')
+    uploaded_cert = st.file_uploader("Choose a certificate image to upload", type=['png','jpg','jpeg','gif'], key='cert_uploader', accept_multiple_files=False)
     if uploaded_cert is not None:
-        saved_cert = save_uploaded_file(uploaded_cert, CERTS_DIR)
-        st.success(f"Saved certificate image to {saved_cert}")
-        st.image(saved_cert, width=200)
-        st.rerun()
+        st.image(uploaded_cert, width=200)
+        if st.button("Save Certificate", key='save_cert_btn'):
+            saved_cert = save_uploaded_file(uploaded_cert, CERTS_DIR)
+            st.success(f"Saved certificate image to {saved_cert}")
+            st.rerun()
 
     # PDF uploader (resume, letters, etc.)
     st.subheader("Upload a PDF document (resume, LOR, etc.)")
-    uploaded_pdf = st.file_uploader("Choose a PDF to upload", type=['pdf'], key='pdf_uploader')
+    uploaded_pdf = st.file_uploader("Choose a PDF to upload", type=['pdf'], key='pdf_uploader', accept_multiple_files=False)
     if uploaded_pdf is not None:
-        saved_pdf = save_uploaded_file(uploaded_pdf, PDFS_DIR)
-        st.success(f"Saved PDF to {saved_pdf}")
-        st.write("The PDF is available in the Saved Documents section.")
-        st.rerun()
+        st.write(f"Selected: {uploaded_pdf.name}")
+        if st.button("Save PDF Document", key='save_pdf_doc_btn'):
+            saved_pdf = save_uploaded_file(uploaded_pdf, PDFS_DIR)
+            st.success(f"Saved PDF to {saved_pdf}")
+            st.write("The PDF is available in the Saved Documents section.")
+            st.rerun()
    
     # Manage/Delete certificate images and PDFs
     st.subheader("Manage Certificates & Documents")
@@ -276,33 +284,36 @@ elif page == "School":
 
     # Subheader uploader for CCA
     st.subheader("Upload images for CCA")
-    uploaded_cca = st.file_uploader("Choose an image for CCA", type=['png','jpg','jpeg','gif'], key='cca_uploader')
+    uploaded_cca = st.file_uploader("Choose an image for CCA", type=['png','jpg','jpeg','gif'], key='cca_uploader', accept_multiple_files=False)
     if uploaded_cca is not None:
-        saved_cca = save_uploaded_file(uploaded_cca, SCHOOL_DIR)
-        st.success(f"Saved CCA image to {saved_cca}")
-        st.image(saved_cca, width=200)
-        st.rerun()
+        st.image(uploaded_cca, width=200)
+        if st.button("Save CCA Image", key='save_cca_btn'):
+            saved_cca = save_uploaded_file(uploaded_cca, SCHOOL_DIR)
+            st.success(f"Saved CCA image to {saved_cca}")
+            st.rerun()
 
     st.subheader("Awards")
     st.write("I have also participated in competitions to represent my school and placed in the cross country competition.")
 
     # Subheader uploader for Awards
     st.subheader("Upload images for Awards")
-    uploaded_award = st.file_uploader("Choose an image for Awards", type=['png','jpg','jpeg','gif'], key='award_uploader')
+    uploaded_award = st.file_uploader("Choose an image for Awards", type=['png','jpg','jpeg','gif'], key='award_uploader', accept_multiple_files=False)
     if uploaded_award is not None:
-        saved_award = save_uploaded_file(uploaded_award, SCHOOL_DIR)
-        st.success(f"Saved Awards image to {saved_award}")
-        st.image(saved_award, width=200)
-        st.rerun()
+        st.image(uploaded_award, width=200)
+        if st.button("Save Award Image", key='save_award_btn'):
+            saved_award = save_uploaded_file(uploaded_award, SCHOOL_DIR)
+            st.success(f"Saved Awards image to {saved_award}")
+            st.rerun()
 
     # School images uploader
     st.subheader("Upload school images")
-    uploaded_school = st.file_uploader("Choose a school image to upload", type=['png','jpg','jpeg','gif'], key='school_uploader')
+    uploaded_school = st.file_uploader("Choose a school image to upload", type=['png','jpg','jpeg','gif'], key='school_uploader', accept_multiple_files=False)
     if uploaded_school is not None:
-        saved_school = save_uploaded_file(uploaded_school, SCHOOL_DIR)
-        st.success(f"Saved school image to {saved_school}")
-        st.image(saved_school, width=200)
-        st.rerun()
+        st.image(uploaded_school, width=200)
+        if st.button("Save School Image", key='save_school_btn'):
+            saved_school = save_uploaded_file(uploaded_school, SCHOOL_DIR)
+            st.success(f"Saved school image to {saved_school}")
+            st.rerun()
 
     # Manage/Delete school images
     st.subheader("Manage School Images")
