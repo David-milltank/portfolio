@@ -197,10 +197,10 @@ elif page == "About Me":
         st.write("No saved About images")
 
     st.write(" Hi, I'm Dave.")
-    st.write("I am the vice president of robotics in my school, and I have been programming for 2 years. I am decent in Python, and I was able to join many competitions. I enjoy playing sports in my free time and outdoor activities.")
+    st.write("I am the Vice President of Robotics in my school, and I have been programming for 2 years. I am decent in Python, and I was able to join many competitions. I enjoy playing sports in my free time, mainly basketball and bowling. I am passionate about improving my coding skills and interacting with others to create new things, like robots or new code, to help others.")
     
     st.header("My Passion")
-    st.write("My passion for coding started when my mother signed me up for a coding class when I was still a kid. It was a class for building LEGO robots and coding them to do different tasks. I got hooked on programming because it was so cool to see my code actually control the robots.")
+    st.write("My passion for coding started when my mother signed me up for a coding class when I was still a kid. It was a class for building LEGO robots and coding them to do different tasks. I got hooked immediately but was unable to continue since my family moved to a new house, and I was unable to attend it. When I joined Serangoon Garden Secondary School, I was able to join the Robotics Club, and I was able to continue my coding journey. I learnt so much from it, and I was able to join many competitions. Though I didn't win them, I gained valuable experiences and was able to get the role of Robotics Vice President. When I heard that my school was offering O-Level Computing, I took it immediately. Though I was not good at it at first, I was able to learn, and with help from my teachers and friends, I was able to grow even more.")
 
     # Subheader uploader for My Passion
     st.subheader("Upload images for My Passion")
@@ -270,9 +270,9 @@ elif page == "Certifications":
 
 elif page == "School":
     st.title("School life")
-    st.write("I learned a lot in computing, and the best part about it is going to competitions. Going to competitions allowed me to learn many new skills and meet a lot of new people. It boosted my confidence and personal growth.")
+    st.write("I learnt a lot in Computing, and the best part about it was going to competitions. Going to competitions allowed me to learn many new skills and meet a lot of new people. It boosted my competitive spirit as well. I enjoyed my time in SGSS as I made many friends and countless memories from all the events that my school has held, like camps, workshops, and inter-class games, which allowed me to build stronger bonds with my classmates. ")
     st.subheader("CCA")
-    st.write("I have also learned a lot from my robotics CCA and made a lot of friends and met a lot of different people in the competitions I have participated in. I have participated in at least two competitions for robotics.")
+    st.write("I have also learnt a lot from my Robotics CCA and made a lot of friends and met a lot of different people in the competitions I have gone for. I have gone for at least two robotics competitions, and I have learnt a lot from them. I was also given a great opportunity to talk to Dr. Janil when he came to our school, and I was able to represent my CCA with my friends and impress him with our robot.")
 
     # Subheader uploader for CCA
     st.subheader("Upload images for CCA")
